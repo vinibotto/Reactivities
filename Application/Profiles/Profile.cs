@@ -1,5 +1,4 @@
 ﻿using Domain;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Application.Profiles

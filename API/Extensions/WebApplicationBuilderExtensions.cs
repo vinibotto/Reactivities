@@ -27,7 +27,11 @@ namespace API.Extensions
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                    policy
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins("http://localhost:3000");
                 });
             });
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(List.Handler).Assembly));
@@ -38,6 +42,7 @@ namespace API.Extensions
             builder.Services.AddScoped<IUserAccessor, UserAcessor>();
             builder.Services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
+            builder.Services.AddSignalR();
         }
     }
 }
