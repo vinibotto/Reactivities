@@ -28,6 +28,13 @@ export class Profile implements IProfile {
     following = false;
 }
 
+export interface UserActivity{
+    id: string;
+    title: string;
+    category: string;
+    date: Date;
+}
+
 export interface Photo {
     id:string;
     url: string;
