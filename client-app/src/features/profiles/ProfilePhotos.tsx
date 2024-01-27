@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { observer } from "mobx-react-lite";
 import { Image, Card, Header, Tab, Grid, Button } from "semantic-ui-react";
 import { Photo, Profile } from '../../app/models/profile';

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 import { Profile } from '../../app/models/profile';
 import { observer } from 'mobx-react-lite';
 import { Button, Reveal } from 'semantic-ui-react';
@@ -17,7 +17,7 @@ export default observer(function FollowButton({profile}: Props){
     function handleFollow(e: SyntheticEvent, username: string){
         e.preventDefault();
         profile.following ? updateFollowing(username, false) : updateFollowing(username, true);
-    };
+    }
 
     return(
         <Reveal animated='move'>

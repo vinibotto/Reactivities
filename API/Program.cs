@@ -1,4 +1,3 @@
-using API.Extensions;
 using API.Middleware;
 using API.SignalR;
 using Microsoft.AspNetCore.Authorization;
@@ -42,11 +41,13 @@ app.UseRouting();
 app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
+app.MapControllers();
 app.MapHub<ChatHub>("/chat");
+app.MapFallbackToController("Index", "Fallback");
 
 await app.RunAsync();
