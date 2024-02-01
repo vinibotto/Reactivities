@@ -43,11 +43,11 @@ namespace Application.Profiles
                    .AsQueryable();
 
                 if (request.Predicate == "past" && request.Predicate != "hosting")
-                    query = query.Where(d => d.Date < DateTime.Now);
+                    query = query.Where(d => d.Date < DateTime.UtcNow);
                 else if (request.Predicate != "past" && request.Predicate == "hosting")
                     query = query.Where(d => d.HostUsername == request.Username);
                 else
-                    query = query.Where(d => d.Date > DateTime.Now);
+                    query = query.Where(d => d.Date > DateTime.UtcNow);
 
                 return Result<List<UserActivityDto>>.Success(await query.ToListAsync());
             }

@@ -22,12 +22,14 @@ export default class CommentStore {
             .build();
         }
 
+        console.log("Starting Hub Connection...");
         this.hubConnection?.start().catch(error => console.log('Error estabilishing the connection: ',error));
 
         this.hubConnection?.on('LoadComments', (comments: ChatComment[]) => {
             runInAction(() => {
+                console.log("Loading Comments...");
                 comments.forEach(comment => {
-                    comment.createdAt = new Date(comment.createdAt + 'Z');
+                    comment.createdAt = new Date(comment.createdAt);
                 })
                 this.comments = comments
             });
@@ -46,6 +48,7 @@ export default class CommentStore {
     }
 
     clearComments = () => {
+        console.log("Clearing Comments");
         this.comments = [];
         this.stopHubConnection();
     }
